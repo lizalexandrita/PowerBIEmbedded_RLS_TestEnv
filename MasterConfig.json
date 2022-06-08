@@ -1,0 +1,7 @@
+{
+  "auth": {
+    "client_id": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    "client_secret": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "AAD": "https://login.microsoftonline.com/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/oauth2/v2.0/token"
+  }
+}

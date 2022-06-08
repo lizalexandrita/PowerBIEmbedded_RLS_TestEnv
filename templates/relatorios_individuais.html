@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>MATData</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/static/Table_Responsive_v1/images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/Table_Responsive_v1/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="/static/Table_Responsive_v1/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/Table_Responsive_v1/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="/static/Table_Responsive_v1/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="/static/Table_Responsive_v1/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/static/Table_Responsive_v1/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/static/Table_Responsive_v1/css/main.css">
+</head>
+<body>
+<h2>MATData - Micro-serviço de Automatização de Testes de Dados</h2>
+
+<p align="left">
+    <a href=/>
+    <button> Home
+    </button>
+    </a>
+</p>
+<div id="reportContainer"></div>
+
+<script src="/static/Table_Responsive_v1/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="/static/Table_Responsive_v1/vendor/bootstrap/js/popper.js"></script>
+<script src="/static/Table_Responsive_v1/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/Table_Responsive_v1/vendor/select2/select2.min.js"></script>
+<script src="/static/Table_Responsive_v1/js/main.js"></script>
+
+<script src="/static/powerbi.js"></script>
+<style>
+    html, body {
+        height:98%;
+        width:100%;
+        background: linear-gradient(45deg, #B72FFF, #0CB3FF);
+    }
+    #reportContainer {
+        height:94%;
+        width:100%;
+    }
+</style>
+
+
+<script>
+    // Read embed application token from Flask
+    var accessToken = '{{embed_token}}';
+
+    // Read embed URL from Flask
+    var embedUrl = '{{embed_url}}';
+
+    // Read report Id from Flask
+    var embedReportId = '{{report_id}}';
+
+    // Get models. models contains enums that can be used.
+    var models = window['powerbi-client'].models;
+
+    // Embed configuration used to describe what and how to embed.
+    // This object is used when calling powerbi.embed.
+    // This also includes settings and options such as filters.
+    // You can find more information at https://github.com/Microsoft/PowerBI-JavaScript/wiki/Embed-Configuration-Details.
+    var config = {
+        type: 'report',
+        tokenType: models.TokenType.Embed,
+        accessToken: accessToken,
+        embedUrl: embedUrl,
+        id: embedReportId,
+        permissions: models.Permissions.All,
+        settings: {
+            filterPaneEnabled: false,
+            navContentPaneEnabled: false
+        }
+    };
+
+    // Get a reference to the embedded report HTML element
+    var reportContainer = document.getElementById('reportContainer');
+
+    // Embed the report and display it within the div container.
+    var report = powerbi.embed(reportContainer, config);
+
+
+
+
+</script>
+
+</body>
+</html>
